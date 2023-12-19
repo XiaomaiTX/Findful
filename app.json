@@ -1,0 +1,54 @@
+{
+  "configVersion": "v3",
+  "app": {
+    "appId": 20231219,
+    "appName": "Findful",
+    "appType": "app",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "icon": "icon.png",
+    "vender": "XiaomaiTX",
+    "description": "description"
+  },
+  "permissions": [
+    "data:os.device.info",
+    "device:os.local_storage"
+  ],
+  "runtime": {
+    "apiVersion": {
+      "compatible": "3.0.0",
+      "target": "3.0.0",
+      "minVersion": "3.0"
+    }
+  },
+  "debug": false,
+  "targets": {
+    "gt": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/gt/index/index.page",
+            "page/gt/homepage/index.page"
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "st": "r"
+        },
+        {
+          "st": "s"
+        }
+      ],
+      "designWidth": 480
+    }
+  },
+  "i18n": {
+    "en-US": {
+      "appName": "Find your device easily"
+    }
+  },
+  "defaultLanguage": "en-US"
+}
