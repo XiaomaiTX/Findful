@@ -10,7 +10,7 @@
     },
     "icon": "icon.png",
     "vender": "XiaomaiTX",
-    "description": "description"
+    "description": "Find your device easily"
   },
   "permissions": [
     "data:os.device.info",
@@ -47,7 +47,7 @@
   },
   "i18n": {
     "en-US": {
-      "appName": "Find your device easily"
+      "appName": "Findful"
     }
   },
   "defaultLanguage": "en-US"

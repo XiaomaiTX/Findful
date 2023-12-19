@@ -1,6 +1,6 @@
 import * as hmUI from "@zos/ui";
 import { log as Logger } from "@zos/utils";
-import { TEXT_STYLE } from "zosLoader:./index.page.[pf].layout.js";
+import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
 
 const logger = Logger.getLogger("helloworld");
 Page({
@@ -9,7 +9,9 @@ Page({
   },
   build() {
     logger.debug("page build invoked");
-    hmUI.createWidget(hmUI.widget.TEXT, TEXT_STYLE);
+    const Title = hmUI.createWidget(hmUI.widget.TEXT, STYLE.TITLE_STYLE);
+    const DescribtionText = hmUI.createWidget(hmUI.widget.TEXT, STYLE.DESCRIBTION_STYLE);
+    const Subtitle = hmUI.createWidget(hmUI.widget.TEXT, STYLE.SUBTITLE_STYLE);
   },
   onDestroy() {
     logger.debug("page onDestroy invoked");

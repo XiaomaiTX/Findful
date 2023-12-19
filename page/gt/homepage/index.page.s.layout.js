@@ -5,15 +5,48 @@ import { px } from "@zos/utils";
 
 export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();
 
-export const TEXT_STYLE = {
-  text: getText("appName"),
-  x: px(42),
-  y: px(200),
-  w: DEVICE_WIDTH - px(42) * 2,
-  h: px(100),
-  color: 0xffffff,
-  text_size: px(36),
-  align_h: hmUI.align.CENTER_H,
-  align_v: hmUI.align.CENTER_V,
-  text_style: hmUI.text_style.WRAP,
+export const TITLE_STYLE = {
+  x: (px(480) - px(64)) / 2,
+  y: (px(480) - px(64)) / 2,
+  img: "icon_64x64.png"
 };
+
+export const DESCRIBTION_STYLE = {
+
+}
+
+export const SUBTITLE_STYLE = {
+
+}
+
+export const ITEM_CONTAINER_STYLE = {
+
+}
+export const ITEM_TITLE_STYLE = {
+
+}
+export const ITEM_ICON_STYLE = {
+
+}
+export const ITEM_DESTANCE_CONTAINER_STYLE = {
+
+}
+export const ITEM_DESTANCE_TEXT_STYLE = {
+  
+}
+
+export const ITEM_TIME_CONTAINER_STYLE = {
+
+}
+export const ITEM_TIME_TEXT_STYLE = {
+  
+}
+
+export const ITEM_STATUS_LIGHT_STYLE = {
+
+}
+
+export const ITEM_RIGHT_STYLE = {
+
+}
+
