@@ -19,6 +19,10 @@ export const SUBTITLE_STYLE = {
 
 }
 
+export const PROGRESS_BAR_STYLE = {
+
+}
+
 export const ITEM_CONTAINER_STYLE = {
 
 }

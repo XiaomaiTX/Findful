@@ -1,8 +1,7 @@
 import * as hmUI from "@zos/ui";
-import { log as Logger } from "@zos/utils";
+import { log as logger } from "@zos/utils";
 import * as STYLE  from "zosLoader:./index.page.[pf].layout.js";
 
-const logger = Logger.getLogger("helloworld");
 Page({
   onInit() {
     logger.debug("page onInit invoked");
