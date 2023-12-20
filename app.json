@@ -30,7 +30,10 @@
         "page": {
           "pages": [
             "page/gt/index/index.page",
-            "page/gt/homepage/index.page"
+            "page/gt/About/index.page",
+            "page/gt/UserAgreement/index.page",
+            "page/gt/QuickStart/index.page",
+            "page/gt/HomePage/index.page"
           ]
         }
       },
@@ -47,6 +50,9 @@
   },
   "i18n": {
     "en-US": {
+      "appName": "Findful"
+    },
+    "zh-CN": {
       "appName": "Findful"
     }
   },
