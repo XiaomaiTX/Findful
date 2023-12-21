@@ -12,6 +12,7 @@
     "@zeppos/device-types": "^3.0.0"
   },
   "dependencies": {
+    "@silver-zepp/vis-log": "^1.0.8",
     "@zeppos/zml": "^0.0.9"
   }
 }

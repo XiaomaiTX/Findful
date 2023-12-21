@@ -2,6 +2,7 @@ import * as hmUI from "@zos/ui";
 import { log as Logger } from "@zos/utils";
 import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
 import { Fx } from "../../../libs/fx"
+import { push } from "@zos/router"
 
 const logger = Logger.getLogger('homepage')
 
@@ -19,7 +20,7 @@ Page({
       time: 1,
       style: Fx.Styles.EASE_IN_OUT_QUAD,
       onStop() {
-        fpush({
+        push({
           url: 'page/gt/homepage/index.page',
           params: ''
         })
@@ -27,7 +28,7 @@ Page({
       },
       func: (result) => {
       }
-    })
+    })//*/
   },
   onDestroy() {
     logger.debug("page onDestroy invoked");
