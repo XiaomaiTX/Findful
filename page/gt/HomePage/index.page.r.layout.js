@@ -68,7 +68,7 @@ export const PROGRESS_BAR_STYLE = {
 
 export const DEVICES_LIST_UI_GROUP_STYLE = {
 	x: px(20),
-	y: px(244), 
+	y: px(244),
 	w: px(440),
 	h: px(480),
 };
@@ -77,8 +77,14 @@ export const ITEM_CONTAINER_STYLE = {
 	y: px(0),
 	w: px(440),
 	h: px(100),
+	src: "item_container.png",
+	/*
+	x: px(0),
+	y: px(0),
+	w: px(440),
+	h: px(100),
 	radius: px(25),
-	color: 0x1c1c1e,
+	color: 0x1c1c1e,//*/
 };
 export const ITEM_TITLE_STYLE = {
 	x: px(0 + 68),
