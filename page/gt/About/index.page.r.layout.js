@@ -16,8 +16,7 @@ export const TITLE_STYLE = {
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
   text: "Findful",
-};
-
+};TITLE_STYLE
 export const DESCRIBTION_STYLE = {
   x: px(0),
   y: px(27 + 116),
@@ -41,7 +40,7 @@ export const SUBTITLE_STYLE = {
   align_h: align.CENTER_H,
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
-  text: "Devices",
+  text: "Developer",
 };
 export const ITEM_CONTAINER_STYLE = {
   x: px(0),
@@ -75,3 +74,4 @@ export const ITEM_SUBTITLE_STYLE = {
   text_style: text_style.NONE,
   text: "Devices",
 };
+                                                                                                                                                                                                                                                                                                                                                                                            
