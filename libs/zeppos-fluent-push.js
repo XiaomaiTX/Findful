@@ -88,13 +88,14 @@ export function fpush(param) {
 }
 export function pageInit(param) {
   hmUI.setStatusBarVisible(false);
+  t=1
   param.onStop();
   const page_mask = hmUI.createWidget(hmUI.widget.CIRCLE, PAGE_INIT_MASK);
   new Fx({
     begin: 255, // Initial value of function. 初始函数值
     end: 0, // Target value of function. 目标函数值
     fps: 60, // FPS. 帧率
-    time: 0.1, // Total during time (s). 总时长(秒)
+    time: t, // Total during time (s). 总时长(秒)
     style: Fx.Styles.EASE_OUT_EXPO, // Types of animation presets used, seeing @Fx.Style. 预设类型 见下面的Fx.Style
     onStop() {
       page_mask.setEnable(false);

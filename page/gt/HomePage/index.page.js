@@ -5,6 +5,7 @@ import * as BLE from "@zos/ble";
 import VisLog from "@silver-zepp/vis-log";
 import BLEMaster from "../../../libs/ble-master";
 import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
+import { TEST_BUTTON_STYLE, TEST_CONTAINER_STYLE } from "./index.page.r.layout";
 
 // import Fx and fxpush
 
@@ -40,10 +41,10 @@ Page({
           hmUI.widget.FILL_RECT,
           STYLE.PROGRESS_BAR_STYLE
         );
-        let _devicesListUIGroup;
+        var _devicesListUIGroup;
 
-        // TODO | Sreach for BLE devices
-        rawDevices = [];
+        // TODO | Search for BLE devices
+        var rawDevices = [];
         //vis.log("init rawDevices");
 
         //vis.log("Init scan");
@@ -75,18 +76,22 @@ Page({
           sortedDevices.forEach((device) => {
             //vis.log(`${device.mac} - ${device.dev_name} - ${device.rssi}`);
           });
-          rawDevices = [];
-          return sortedDevices;
+          rawDevices.length = 0;
+          // vis.log("clean"+rawDevices.length);
           //BLE.stopScan();
+          return sortedDevices;
         }
         function DrawDevicesList() {
           // TODO | Refresh scan results
           let sortedDevices = refreshScan();
+          // vis.log("Draw"+rawDevices.length);
           // Delete old UI
           if (_devicesListUIGroup) {
             hmUI.deleteWidget(_devicesListUIGroup);
+            //vis.log("delete");
             hmUI.redraw();
           }
+
           const devicesListUIGroup = hmUI.createWidget(hmUI.widget.GROUP, {
             ...STYLE.DEVICES_LIST_UI_GROUP_STYLE,
             h:
@@ -115,29 +120,21 @@ Page({
                 text: device.dev_name,
               })
               .setEnable(false);
-            /*devicesListUIGroup
+           devicesListUIGroup
                   .createWidget(hmUI.widget.IMG, {
-                    ...STYLE.ITEM_ICON_BG_STYLE,
+                    ...STYLE.ITEM_ICON_STYLE,
                     y:
-                      STYLE.ITEM_ICON_BG_STYLE.y +
+                      STYLE.ITEM_ICON_STYLE.y +
                       (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
                   })
-                  .setEnable(false);//*/
-            devicesListUIGroup
-              .createWidget(hmUI.widget.IMG, {
-                ...STYLE.ITEM_ICON_STYLE,
-                y:
+                  .setEnable(false)
+                y: /*
                   STYLE.ITEM_ICON_STYLE.y +
                   (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
-              })
-              .setEnable(false);
-            /*devicesListUIGroup
-                  .createWidget(hmUI.widget.FILL_RECT, {
+              })timeouteWidget(hmUI.widget.FILL_RECT, {
                     ...STYLE.ITEM_DESTANCE_CONTAINER_STYLE,
-                    y:
-                      STYLE.ITEM_DESTANCE_CONTAINER_STYLE.y +
-                      (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
-                  })
+                    y:          }, 1000);
+
                   .setEnable(false);//*/
             devicesListUIGroup
               .createWidget(hmUI.widget.TEXT, {
@@ -165,6 +162,7 @@ Page({
                 text: device.mac,
               })
               .setEnable(false);
+
             /*devicesListUIGroup
                   .createWidget(hmUI.widget.IMG, {
                     ...STYLE.ITEM_CHEVRON_RIGHT_STYLE,
