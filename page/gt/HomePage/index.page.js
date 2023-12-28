@@ -41,54 +41,61 @@ Page({
           hmUI.widget.FILL_RECT,
           STYLE.PROGRESS_BAR_STYLE
         );
-        var _devicesListUIGroup;
 
         // TODO | Search for BLE devices
         var rawDevices = [];
         //vis.log("init rawDevices");
 
         //vis.log("Init scan");
-        BLE.startScan((scan_result) => {
-          if (scan_result) {
-            // Scan success
-            Object.keys(BLE.get.devices()).forEach((mac) => {
-              const dev_name = BLE.get.devices()[mac].dev_name;
-              const rssi = BLE.get.devices()[mac].rssi;
-              if (dev_name !== "unnamed_device") {
-                // Delete unnamed device
-                rawDevices.push({ mac, dev_name, rssi });
-              }
-            });
-          } else {
-            // Scan failed
-            vis.log("Scan failed");
-          }
-        });
-        function refreshScan() {
+        function bleScan() {
+
+          const scanOptions = {
+            duration: 5000,
+            on_duration: () => {
+              vis.log("scan stop");
+            },
+          };
+          BLE.startScan((scan_result) => {
+            if (scan_result) {
+              // Scan success
+              Object.keys(BLE.get.devices()).forEach((mac) => {
+                const dev_name = BLE.get.devices()[mac].dev_name;
+                const rssi = BLE.get.devices()[mac].rssi;
+                if (dev_name !== "unnamed_device") {
+                  // Delete unnamed device
+                  rawDevices.push({ mac, dev_name, rssi });
+                }
+              });
+            } else {
+              // Scan failed
+              vis.log("Scan failed");
+            }
+          }, scanOptions);
+
           //vis.log("========================");
           // Delete duplicate devices
           const uniqueDevices = Array.from(
             new Set(rawDevices.map((device) => device.mac))
           ).map((mac) => rawDevices.find((device) => device.mac === mac));
           // Sort by RSSI (-20 ~ -100 dB)
+
           const sortedDevices = uniqueDevices.sort((a, b) => b.rssi - a.rssi);
 
           sortedDevices.forEach((device) => {
-            //vis.log(`${device.mac} - ${device.dev_name} - ${device.rssi}`);
+            vis.log(`${device.mac} - ${device.dev_name} - ${device.rssi}`);
           });
           rawDevices.length = 0;
           // vis.log("clean"+rawDevices.length);
           //BLE.stopScan();
           return sortedDevices;
         }
-        function DrawDevicesList() {
+        function DrawDevicesList(sortedDevices, _devicesListUIGroup) {
           // TODO | Refresh scan results
-          let sortedDevices = refreshScan();
           // vis.log("Draw"+rawDevices.length);
           // Delete old UI
           if (_devicesListUIGroup) {
             hmUI.deleteWidget(_devicesListUIGroup);
-            //vis.log("delete");
+            vis.log("delete _devicesListUIGroup");
             hmUI.redraw();
           }
 
@@ -120,23 +127,15 @@ Page({
                 text: device.dev_name,
               })
               .setEnable(false);
-           devicesListUIGroup
-                  .createWidget(hmUI.widget.IMG, {
-                    ...STYLE.ITEM_ICON_STYLE,
-                    y:
-                      STYLE.ITEM_ICON_STYLE.y +
-                      (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
-                  })
-                  .setEnable(false)
-                y: /*
+            devicesListUIGroup
+              .createWidget(hmUI.widget.IMG, {
+                ...STYLE.ITEM_ICON_STYLE,
+                y:
                   STYLE.ITEM_ICON_STYLE.y +
                   (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
-              })timeouteWidget(hmUI.widget.FILL_RECT, {
-                    ...STYLE.ITEM_DESTANCE_CONTAINER_STYLE,
-                    y:          }, 1000);
-
-                  .setEnable(false);//*/
-            devicesListUIGroup
+              })
+              .setEnable(false);
+            y: devicesListUIGroup
               .createWidget(hmUI.widget.TEXT, {
                 ...STYLE.ITEM_DESTANCE_TEXT_STYLE,
                 y:
@@ -145,14 +144,6 @@ Page({
                 text: device.rssi,
               })
               .setEnable(false);
-            /*devicesListUIGroup
-                  .createWidget(hmUI.widget.FILL_RECT, {
-                    ...STYLE.ITEM_MAC_CONTAINER_STYLE,
-                    y:
-                      STYLE.ITEM_MAC_CONTAINER_STYLE.y +
-                      (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
-                  })
-                  .setEnable(false);//*/
             devicesListUIGroup
               .createWidget(hmUI.widget.TEXT, {
                 ...STYLE.ITEM_MAC_TEXT_STYLE,
@@ -162,16 +153,8 @@ Page({
                 text: device.mac,
               })
               .setEnable(false);
-
-            /*devicesListUIGroup
-                  .createWidget(hmUI.widget.IMG, {
-                    ...STYLE.ITEM_CHEVRON_RIGHT_STYLE,
-                    y:
-                      STYLE.ITEM_CHEVRON_RIGHT_STYLE.y +
-                      (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
-                  })
-                  .setEnable(false);//*/
           });
+          return devicesListUIGroup;
         }
         const scanDevicesTimer = setInterval(() => {
           switch (pageStatus) {
@@ -179,10 +162,10 @@ Page({
             case "scan_for_the_one_device":
           }
 
-          DrawDevicesList();
-        }, 3000);
+          _devicesListUIGroup = DrawDevicesList(bleScan(), _devicesListUIGroup);
+        }, 5000);
         function ScanOneDevice(mac) {
-          let sortedDevices = refreshScan();
+          let sortedDevices = bleScan();
         }
       },
     });
