@@ -1,13 +1,14 @@
 import * as hmUI from "@zos/ui";
 import { log as Logger } from "@zos/utils";
 import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
-import * as BLE from "@zos/ble";
 import VisLog from "@silver-zepp/vis-log";
 import BLEMaster from "../../../libs/ble-master";
 import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
 import { TEST_BUTTON_STYLE, TEST_CONTAINER_STYLE } from "./index.page.r.layout";
-import { sessionStorage } from "@zos/storage";
+import * as zosStorage from "@zos/storage";
 // import Fx and fxpush
+import * as zosInteraction from "@zos/interaction";
+import * as zosRouter from "@zos/router";
 
 const logger = Logger.getLogger("homepage");
 
@@ -18,6 +19,14 @@ Page({
 	build() {
 		pageInit({
 			onStop() {
+				zosInteraction.onGesture({
+					callback: (event) => {
+						if (event === zosInteraction.GESTURE_RIGHT) {
+							zosRouter.home();
+						}
+						return true;
+					},
+				});
 				const vis = new VisLog("HomePage.js");
 				vis.updateSettings({ line_count: 20 });
 				const BLE = new BLEMaster();
@@ -57,6 +66,7 @@ Page({
 
 				vis.log("Init scan");
 				function bleScan() {
+          // Start scan | stop scan 4s later | return sortedDevices 5s later
 					const scanOptions = {
 						duration: 4000,
 						on_duration: () => {
@@ -142,12 +152,18 @@ Page({
 							.addEventListener(
 								hmUI.event.CLICK_UP,
 								function (info) {
-									sessionStorage.setItem(
+									zosStorage.sessionStorage.setItem(
 										"dev_name",
 										device.dev_name
 									);
-									sessionStorage.setItem("mac", device.mac);
-									sessionStorage.setItem("rssi", device.rssi);
+									zosStorage.sessionStorage.setItem(
+										"mac",
+										device.mac
+									);
+									zosStorage.sessionStorage.setItem(
+										"rssi",
+										device.rssi
+									);
 									fpush({
 										url: "page/gt/Finding/index.page",
 										params: "",
