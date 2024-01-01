@@ -4,6 +4,7 @@ import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
 import { Fx } from "../../../libs/fx";
 import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
 import { push } from "@zos/router";
+import { setScrollLock } from '@zos/page'
 
 const logger = Logger.getLogger("homepage");
 
@@ -15,6 +16,9 @@ Page({
     pageInit({
       onStop() {
         logger.debug("page build invoked");
+        setScrollLock({
+          lock: true,
+        })
         hmUI.createWidget(hmUI.widget.IMG, STYLE.LOGO_IMG_STYLE);
         new Fx({
           begin: 0,
@@ -24,7 +28,7 @@ Page({
           style: Fx.Styles.EASE_IN_OUT_QUAD,
           onStop() {
             fpush({
-              url: "page/gt/homepage/index.page",
+              url: "page/gt/HomePage/index.page",
               params: "",
             });
           },

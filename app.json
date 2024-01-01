@@ -33,6 +33,7 @@
             "page/gt/About/index.page",
             "page/gt/UserAgreement/index.page",
             "page/gt/QuickStart/index.page",
+            "page/gt/Finding/index.page",
             "page/gt/HomePage/index.page"
           ]
         }

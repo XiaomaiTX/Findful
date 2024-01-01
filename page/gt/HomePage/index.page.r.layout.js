@@ -63,7 +63,7 @@ export const PROGRESS_BAR_STYLE = {
   w: px(400),
   h: px(5),
   radius: px(3),
-  color: 0x3e3e3e,
+  color: 0x000000,
 };
 
 export const DEVICES_LIST_UI_GROUP_STYLE = {
