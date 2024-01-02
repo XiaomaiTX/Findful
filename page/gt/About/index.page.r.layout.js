@@ -29,7 +29,7 @@ export const TITLE_STYLE = {
   align_h: align.CENTER_H,
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
-  text: "Findful",
+  text: "About",
 };
 
 export const DESCRIPTION_STYLE = {
@@ -42,7 +42,7 @@ export const DESCRIPTION_STYLE = {
   align_h: align.CENTER_H,
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
-  text: "Find your device easily",
+  text: "Thanks all developers, libs, and YOU!",
 };
 
 export const SUBTITLE_STYLE = {

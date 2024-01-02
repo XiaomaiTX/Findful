@@ -23,7 +23,7 @@ Page({
 			hmUI.widget.TEXT,
 			STYLE.DESCRIPTION_STYLE
 		);
-    // Developer
+		// Developer
 		hmUI.createWidget(hmUI.widget.TEXT, {
 			...STYLE.SUBTITLE_STYLE,
 			text: "Developer",
@@ -41,6 +41,72 @@ Page({
 			...STYLE.ITEM_SUBTITLE_STYLE,
 			y: px(228 + 53),
 			text: "i@lenrome.cn",
+		});
+		// Thanks
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.SUBTITLE_STYLE,
+			y: px(335),
+			text: "Thanks",
+		});
+		hmUI.createWidget(hmUI.widget.FILL_RECT, {
+			...STYLE.ITEM_CONTAINER_STYLE,
+			y: px(365),
+		});
+		// zeppos-Fx
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.ITEM_TITLE_STYLE,
+			y: px(365 + 21),
+			text: "zeppos-Fx",
+		});
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.ITEM_SUBTITLE_STYLE,
+			y: px(365 + 53),
+			text: "@XiaomaiTX on Github",
+		});
+		// zeppos-fluent-push
+		hmUI.createWidget(hmUI.widget.FILL_RECT, {
+			...STYLE.ITEM_CONTAINER_STYLE,
+			y: px(472),
+		});
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.ITEM_TITLE_STYLE,
+			y: px(472 + 21),
+			text: "zeppos-fluent-push",
+		});
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.ITEM_SUBTITLE_STYLE,
+			y: px(472 + 53),
+			text: "@XiaomaiTX on Github",
+		});
+		// zeppos-timer
+		hmUI.createWidget(hmUI.widget.FILL_RECT, {
+			...STYLE.ITEM_CONTAINER_STYLE,
+			y: px(579),
+		});
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.ITEM_TITLE_STYLE,
+			y: px(579 + 21),
+			text: "zeppos-timer",
+		});
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.ITEM_SUBTITLE_STYLE,
+			y: px(579 + 53),
+			text: "@XiaomaiTX on Github",
+		});
+		// zeppos-easy-ble
+		hmUI.createWidget(hmUI.widget.FILL_RECT, {
+			...STYLE.ITEM_CONTAINER_STYLE,
+			y: px(686),
+		});
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.ITEM_TITLE_STYLE,
+			y: px(686 + 21),
+			text: "zeppos-easy-ble",
+		});
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.ITEM_SUBTITLE_STYLE,
+			y: px(686 + 53),
+			text: "@silver-zepp on Github",
 		});
 	},
 	onDestroy() {
