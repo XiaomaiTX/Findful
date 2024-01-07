@@ -62,6 +62,6 @@ export const BUTTON_STYLE = {
 	radius: px(25),
 	normal_color: 0x1c1c1e,
 	press_color: 0x000000,
-	text: "I Find It !",
+	text: getText("page_Finding_Found"),
 	click_func: () => {},
 };

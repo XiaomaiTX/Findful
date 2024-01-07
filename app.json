@@ -10,7 +10,7 @@
     },
     "icon": "icon.png",
     "vender": "XiaomaiTX",
-    "description": "Find your device easily"
+    "description": "Find your devices easily"
   },
   "permissions": [
     "data:os.device.info",
@@ -54,10 +54,10 @@
       "appName": "Findful"
     },
     "zh-TW": {
-      "appName": "Findful"
+      "appName": "寻迹"
     },
     "zh-CN": {
-      "appName": "Findful"
+      "appName": "寻迹"
     }
   },
   "defaultLanguage": "en-US"

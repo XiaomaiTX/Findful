@@ -29,7 +29,7 @@ export const TITLE_STYLE = {
   align_h: align.CENTER_H,
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
-  text: "About",
+  text: getText("page_About_Title"),
 };
 
 export const DESCRIPTION_STYLE = {
@@ -42,7 +42,7 @@ export const DESCRIPTION_STYLE = {
   align_h: align.CENTER_H,
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
-  text: "Thanks all developers, libs, \nand YOU!",
+  text: getText("page_About_Description"),
 };
 
 export const SUBTITLE_STYLE = {

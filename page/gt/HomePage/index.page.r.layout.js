@@ -28,7 +28,7 @@ export const TITLE_STYLE = {
   align_h: align.CENTER_H,
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
-  text: "Findful",
+  text: getText("appName"),
 };
 
 export const DESCRIBTION_STYLE = {
@@ -41,7 +41,7 @@ export const DESCRIBTION_STYLE = {
   align_h: align.CENTER_H,
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
-  text: "Find your device easily",
+  text: getText("appDescription"),
 };
 
 export const SUBTITLE_STYLE = {
@@ -54,7 +54,7 @@ export const SUBTITLE_STYLE = {
   align_h: align.CENTER_H,
   align_v: align.CENTER_V,
   text_style: text_style.NONE,
-  text: "Devices",
+  text: getText("page_HomePage_SubTitle"),
 };
 
 export const PROGRESS_BAR_STYLE = {

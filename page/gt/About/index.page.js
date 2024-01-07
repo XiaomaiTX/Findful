@@ -5,6 +5,7 @@ import * as zosInteraction from "@zos/interaction";
 import { log as Logger } from "@zos/utils";
 import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
 import { Fx } from "../../../libs/fx";
+import { getText } from "@zos/i18n";
 
 const logger = Logger.getLogger("homepage");
 
@@ -29,7 +30,7 @@ Page({
 		// Developer
 		hmUI.createWidget(hmUI.widget.TEXT, {
 			...STYLE.SUBTITLE_STYLE,
-			text: "Developer",
+			text: getText("page_About_Developer"),
 		});
 		hmUI.createWidget(hmUI.widget.FILL_RECT, {
 			...STYLE.ITEM_CONTAINER_STYLE,
@@ -49,7 +50,7 @@ Page({
 		hmUI.createWidget(hmUI.widget.TEXT, {
 			...STYLE.SUBTITLE_STYLE,
 			y: px(335),
-			text: "Thanks",
+			text: getText("page_About_Thanks"),
 		});
 		hmUI.createWidget(hmUI.widget.FILL_RECT, {
 			...STYLE.ITEM_CONTAINER_STYLE,
