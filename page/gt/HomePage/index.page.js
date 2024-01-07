@@ -214,17 +214,16 @@ Page({
 							})
 							.setEnable(false);
 					});
-					vis.log("recreate UI")
+					vis.log("recreate UI");
 					rawDevices.length = 0;
-					vis.log("rawDevices.length "+rawDevices.length)
+					vis.log("rawDevices.length " + rawDevices.length);
 
 					sortedDevices.length = 0;
-					vis.log("sortedDevices.length "+sortedDevices.length)
+					vis.log("sortedDevices.length " + sortedDevices.length);
 
 					return devicesListUIGroup;
 				}
 				const scanDevicesTimer = setInterval(() => {
-
 					switch (pageStatus) {
 						case "scan_for_more_devices":
 						case "scan_for_the_one_device":
@@ -235,9 +234,6 @@ Page({
 						_devicesListUIGroup
 					);
 				}, 5000);
-				function ScanOneDevice(mac) {
-					let sortedDevices = bleScan();
-				}
 			},
 		});
 	},

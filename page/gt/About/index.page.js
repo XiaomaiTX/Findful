@@ -15,8 +15,8 @@ Page({
 	},
 	build() {
 		logger.debug("page build invoked");
-		zosInteraction.offGesture()
-		  
+		zosInteraction.offGesture();
+
 		const backgroundImg = hmUI.createWidget(
 			hmUI.widget.IMG,
 			STYLE.BG_STYLE
@@ -112,7 +112,13 @@ Page({
 			y: px(686 + 53),
 			text: "@silver-zepp on Github",
 		});
-	},
+		hmUI.createWidget(widget.QRCODE, STYLE.QRCODE_STYLE);
+		hmUI.createWidget(hmUI.widget.TEXT, {
+			...STYLE.FOOTER_STYLE,
+			y: px(1026),
+			text: "@XiaomaiTX",
+		});
+},
 	onDestroy() {
 		logger.debug("page onDestroy invoked");
 	},

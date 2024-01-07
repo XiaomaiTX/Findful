@@ -90,4 +90,27 @@ export const ITEM_SUBTITLE_STYLE = {
   text_style: hmUI.text_style.NONE,
   text: "",
 };
-                                                                                                                                                                                                                                                                                                                                                                                            
+
+export const QRCODE_STYLE = {
+  content: 'https://github.com/XiaomaiTX',
+  x: px(135+10),
+  y: px(801+10),
+  w: px(210-20),
+  h: px(210-20),
+  bg_x: px(135),
+  bg_y: px(801),
+  bg_w: px(210),
+  bg_h: px(210),
+}
+export const FOOTER_STYLE = {
+  x: px(0),
+  y: px(53),
+  w: px(480),
+  h: px(29),
+  color: 0x9e9e9e,
+  text_size: px(28),
+  align_h: hmUI.align.CENTER_H,
+  align_v: hmUI.align.CENTER_V,
+  text_style: hmUI.text_style.NONE,
+  text: "",
+};
