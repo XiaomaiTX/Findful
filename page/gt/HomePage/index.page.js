@@ -59,14 +59,19 @@ Page({
 					hmUI.widget.FILL_RECT,
 					STYLE.PROGRESS_BAR_STYLE
 				);
-
+				icon.addEventListener(hmUI.event.CLICK_DOWN, function (info) {
+					fpush({
+						url: "page/gt/About/index.page",
+						params: "",
+					});
+				});
 				// TODO | Search for BLE devices
 				var rawDevices = [];
 				//vis.log("init rawDevices");
-
+				var sortedDevices = [];
 				vis.log("Init scan");
 				function bleScan() {
-          // Start scan | stop scan 4s later | return sortedDevices 5s later
+					// Start scan | stop scan 4s later | return sortedDevices 5s later
 					const scanOptions = {
 						duration: 4000,
 						on_duration: () => {
@@ -103,7 +108,7 @@ Page({
 					);
 					// Sort by RSSI (-20 ~ -100 dB)
 
-					const sortedDevices = uniqueDevices.sort(
+					sortedDevices = uniqueDevices.sort(
 						(a, b) => b.rssi - a.rssi
 					);
 
@@ -112,10 +117,9 @@ Page({
 							`${device.mac} - ${device.dev_name} - ${device.rssi}`
 						);
 					});
-					rawDevices.length = 0;
-					// vis.log("clean rawDevices "+rawDevices.length);
+
 					//BLE.stopScan();
-					return sortedDevices;
+					return 0;
 				}
 				function DrawDevicesList(sortedDevices, _devicesListUIGroup) {
 					// TODO | Refresh scan results
@@ -210,16 +214,24 @@ Page({
 							})
 							.setEnable(false);
 					});
+					vis.log("recreate UI")
+					rawDevices.length = 0;
+					vis.log("rawDevices.length "+rawDevices.length)
+
+					sortedDevices.length = 0;
+					vis.log("sortedDevices.length "+sortedDevices.length)
+
 					return devicesListUIGroup;
 				}
 				const scanDevicesTimer = setInterval(() => {
+
 					switch (pageStatus) {
 						case "scan_for_more_devices":
 						case "scan_for_the_one_device":
 					}
 
 					_devicesListUIGroup = DrawDevicesList(
-						bleScan(),
+						sortedDevices,
 						_devicesListUIGroup
 					);
 				}, 5000);
@@ -231,6 +243,5 @@ Page({
 	},
 	onDestroy() {
 		logger.debug("page onDestroy invoked");
-		BLE.stopScan();
 	},
 });

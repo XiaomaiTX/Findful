@@ -51,17 +51,18 @@ Page({
 				});
 				// start scanning for nearby devices
 				const scan_success = BLE.startScan((scan_result) => {
-					// if the device that we search for is found
+					// if THE device (mac) that we search for is found
 
 					if (BLE.get.hasDevice(sessionStorage.getItem("mac"))) {
-						const rssi = BLE.get.devices()[sessionStorage.getItem("mac")].rssi;
+						const rssi_value =
+							BLE.get.devices()[sessionStorage.getItem("mac")]
+								.rssi;
 
 						// stop the scan
-						
+
 						rssi.setProperty(prop.MORE, {
-							text: "hello",
+							text: rssi_value,
 						});
-						// start connecting
 					}
 				});
 			},

@@ -1,5 +1,6 @@
 import * as hmUI from "@zos/ui";
 import { createWidget, widget, align, prop, text_style, event } from "@zos/ui";
+import * as zosInteraction from "@zos/interaction";
 
 import { log as Logger } from "@zos/utils";
 import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
@@ -13,6 +14,8 @@ Page({
 	},
 	build() {
 		logger.debug("page build invoked");
+		zosInteraction.offGesture()
+		  
 		const backgroundImg = hmUI.createWidget(
 			hmUI.widget.IMG,
 			STYLE.BG_STYLE
