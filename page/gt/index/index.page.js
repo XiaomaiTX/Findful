@@ -1,12 +1,17 @@
 import * as hmUI from "@zos/ui";
+import VisLog from "@silver-zepp/vis-log";
+
 import { log as Logger } from "@zos/utils";
 import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
 import { Fx } from "../../../libs/fx";
 import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
 import { push } from "@zos/router";
 import { setScrollLock } from '@zos/page'
+import { getScrollTop } from "@zos/page";
 
-const logger = Logger.getLogger("homepage");
+const logger = Logger.getLogger("index");
+const vis = new VisLog("index.js");
+
 
 Page({
   onInit() {
@@ -27,10 +32,12 @@ Page({
           time: 1,
           style: Fx.Styles.EASE_IN_OUT_QUAD,
           onStop() {
+            vis.log(getScrollTop())
+            
             fpush({
               url: "page/gt/HomePage/index.page",
               params: "",
-            });
+            });//*/
           },
           func: (result) => {},
         }); //*/

@@ -25,7 +25,7 @@
  *
  * @example pageInit()
  * Add the following field in build() and replace the original code of the page with "Your Code". 在build()中添加如下字段，并将页面原来的代码替换掉"Your Code"即可
- * 
+ *
  *  pageInit({
  *      onStop() {
  *          YourCode
@@ -38,7 +38,7 @@ import { Fx } from "./fx";
 import * as hmUI from "@zos/ui";
 import { getDeviceInfo } from "@zos/device";
 import { push } from "@zos/router";
-
+import { getScrollTop } from "@zos/page";
 
 const deviceInfo = getDeviceInfo();
 const { width, height } = deviceInfo;
@@ -46,14 +46,14 @@ const { width, height } = deviceInfo;
 const PAGE_MASK = {
   center_x: width / 2,
   center_y: height / 2,
-  radius: width*1.5 / 2,
+  radius: (width * 1.5) / 2,
   color: 0x000000,
   alpha: 0,
 };
 const PAGE_INIT_MASK = {
   center_x: width / 2,
   center_y: height / 2,
-  radius: width*1.5 / 2,
+  radius: (width * 1.5) / 2,
   color: 0x000000,
   alpha: 255,
 };
@@ -62,7 +62,11 @@ export function fpush(param) {
   hmUI.setStatusBarVisible(false);
   console.log(param.url);
   console.log(param.param);
-  const page_mask = hmUI.createWidget(hmUI.widget.CIRCLE, PAGE_MASK);
+  const ScrollY = getScrollTop();
+  const page_mask = hmUI.createWidget(hmUI.widget.CIRCLE, {
+    ...PAGE_MASK,
+    center_y: PAGE_MASK.center_y + ScrollY,
+  });
   new Fx({
     begin: 0, // Initial value of function. 初始函数值
     end: 255, // Target value of function. 目标函数值
@@ -78,7 +82,7 @@ export function fpush(param) {
     func: (result) => {
       page_mask.setProperty(hmUI.prop.MORE, {
         center_x: PAGE_MASK.center_x,
-        center_y: PAGE_MASK.center_y,
+        center_y: PAGE_MASK.center_y + ScrollY,
         radius: PAGE_MASK.radius,
         color: PAGE_MASK.color,
         alpha: result,
@@ -88,7 +92,7 @@ export function fpush(param) {
 }
 export function pageInit(param) {
   hmUI.setStatusBarVisible(false);
-  t=1
+  t = 1;
   param.onStop();
   const page_mask = hmUI.createWidget(hmUI.widget.CIRCLE, PAGE_INIT_MASK);
   new Fx({

@@ -7,6 +7,9 @@ import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
 import { setScrollLock } from "@zos/page";
 import { sessionStorage } from "@zos/storage";
 import BLEMaster from "../../../libs/ble-master";
+import { setPageBrightTime } from "@zos/display";
+import { getScrollTop } from "@zos/page";
+
 import {
 	onGesture,
 	GESTURE_UP,
@@ -25,6 +28,10 @@ Page({
 		pageInit({
 			onStop() {
 				logger.debug("page build invoked");
+				const ScrollY = getScrollTop();
+				logger.log(ScrollY)
+				setPageBrightTime({ brightTime: 600000 });
+
 				const BLE = new BLEMaster();
 				setScrollLock({
 					lock: true,
@@ -60,7 +67,7 @@ Page({
 
 						// stop the scan
 
-						rssi.setProperty(prop.MORE, {
+						rssi.setProperty(hmUI.prop.MORE, {
 							text: rssi_value,
 						});
 					}
