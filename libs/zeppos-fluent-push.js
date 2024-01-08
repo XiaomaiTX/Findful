@@ -65,7 +65,7 @@ export function fpush(param) {
   const ScrollY = getScrollTop();
   const page_mask = hmUI.createWidget(hmUI.widget.CIRCLE, {
     ...PAGE_MASK,
-    center_y: PAGE_MASK.center_y + ScrollY,
+    center_y: PAGE_MASK.center_y - ScrollY,
   });
   new Fx({
     begin: 0, // Initial value of function. 初始函数值
@@ -82,7 +82,7 @@ export function fpush(param) {
     func: (result) => {
       page_mask.setProperty(hmUI.prop.MORE, {
         center_x: PAGE_MASK.center_x,
-        center_y: PAGE_MASK.center_y + ScrollY,
+        center_y: PAGE_MASK.center_y - ScrollY,
         radius: PAGE_MASK.radius,
         color: PAGE_MASK.color,
         alpha: result,

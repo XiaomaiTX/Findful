@@ -32,7 +32,7 @@ Page({
           time: 1,
           style: Fx.Styles.EASE_IN_OUT_QUAD,
           onStop() {
-            vis.log(getScrollTop())
+          //vis.log(getScrollTop())
             
             fpush({
               url: "page/gt/HomePage/index.page",

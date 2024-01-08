@@ -140,6 +140,8 @@ Page({
                 zosStorage.sessionStorage.setItem("dev_name", device.dev_name);
                 zosStorage.sessionStorage.setItem("mac", device.mac);
                 zosStorage.sessionStorage.setItem("rssi", device.rssi);
+
+                BLE.stopScan()
                 fpush({
                   url: "page/gt/Finding/index.page",
                   params: "",
