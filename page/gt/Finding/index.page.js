@@ -9,6 +9,7 @@ import { sessionStorage } from "@zos/storage";
 import BLEMaster from "../../../libs/ble-master";
 import { setPageBrightTime } from "@zos/display";
 import { getScrollTop } from "@zos/page";
+import { back } from "@zos/router";
 
 import {
   onGesture,
@@ -21,8 +22,6 @@ import {
 const logger = Logger.getLogger("homepage");
 const BLE = new BLEMaster();
 const vis = new VisLog("Finding.js");
-
-
 
 Page({
   onInit() {
@@ -56,11 +55,14 @@ Page({
         hmUI.createWidget(hmUI.widget.BUTTON, {
           ...STYLE.BUTTON_STYLE,
           click_func: (button_widget) => {
-            logger.log("button test");
+            BLE.stopScan();
+            back();
           },
         });
+        var color = 0xffffff;
+
         function rssi2distance(rssi, m, n) {
-          d = 10 ^ ((Math.abs(rssi) - m) / (10 * n));
+          d = Math.pow(10, (-rssi - m) / (10 * n)).toFixed(2);
           return d;
         }
         // start scanning for nearby devices
@@ -68,14 +70,24 @@ Page({
           // if THE device (mac) that we search for is found
 
           if (BLE.get.hasDevice(sessionStorage.getItem("mac"))) {
-            const rssi =
-              BLE.get.devices()[sessionStorage.getItem("mac")].rssi;
-			const distance=rssi2distance(rssi,50,4)
-			// Todo | Check m and n
-			vis.log(rssi+" "+distance+" m")
-			// TODO | 
+            const rssi = parseInt(
+              BLE.get.devices()[sessionStorage.getItem("mac")].rssi
+            );
+            const distance = rssi2distance(parseInt(rssi), 86, 6);
+            // Todo | Check m and n
+            if (distance >= 0 && distance < 1) {
+              color = 0x00e676;
+            } else if (distance >= 1 && distance < 1.5) {
+              color = 0xffea00;
+            } else if (distance >= 1.5 && distance < 2) {
+              color = 0xff9100;
+            } else if (distance >= 2 && distance < 3.7) {
+              color = 0xff1744;
+            }
+
             rssiText.setProperty(hmUI.prop.MORE, {
-              text: distance+" m",
+              text: distance + " m",
+              color: color,
             });
           }
         });
@@ -84,6 +96,6 @@ Page({
   },
   onDestroy() {
     logger.debug("page onDestroy invoked");
-	BLE.stopScan()
+    BLE.stopScan();
   },
 });

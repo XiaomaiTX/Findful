@@ -69,6 +69,11 @@ Page({
         var rawDevices = [];
         //logger.log("init rawDevices");
         var sortedDevices = [];
+        function rssi2distance(rssi, m, n) {
+          d = Math.pow(10, (-rssi - m) / (10 * n)).toFixed(1);
+          return d;
+        }
+
         logger.log("Init scan");
         function bleScan() {
           // Start scan | stop scan 4s later | return sortedDevices 5s later
@@ -183,7 +188,7 @@ Page({
                 y:
                   STYLE.ITEM_DESTANCE_TEXT_STYLE.y +
                   (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
-                text: device.rssi,
+                text: rssi2distance(device.rssi,86,6)+" m",
               })
               .setEnable(false);
             devicesListUIGroup
