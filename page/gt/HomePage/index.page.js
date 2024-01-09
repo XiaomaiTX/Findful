@@ -12,6 +12,7 @@ import * as zosRouter from "@zos/router";
 import { setPageBrightTime } from "@zos/display";
 
 const logger = Logger.getLogger("homepage");
+const BLE = new BLEMaster();
 
 Page({
   onInit() {
@@ -31,7 +32,6 @@ Page({
         });
         const vis = new VisLog("HomePage.js");
         vis.updateSettings({ line_count: 20 });
-        const BLE = new BLEMaster();
 
         //vis.debug("page build invoked");
         // TODO | Draw UI face
@@ -53,6 +53,13 @@ Page({
           STYLE.PROGRESS_BAR_STYLE
         );
         icon.addEventListener(hmUI.event.CLICK_DOWN, function (info) {
+          BLE.stopScan()
+          if (_devicesListUIGroup) {
+            hmUI.deleteWidget(_devicesListUIGroup);
+            logger.log("delete _devicesListUIGroup");
+            hmUI.redraw();
+          }
+
           fpush({
             url: "page/gt/About/index.page",
             params: "",
@@ -137,6 +144,12 @@ Page({
                   (STYLE.ITEM_CONTAINER_STYLE.h + px(20)) * index,
               })
               .addEventListener(hmUI.event.CLICK_UP, function (info) {
+                if (_devicesListUIGroup) {
+                  hmUI.deleteWidget(_devicesListUIGroup);
+                  logger.log("delete _devicesListUIGroup");
+                  hmUI.redraw();
+                }
+      
                 zosStorage.sessionStorage.setItem("dev_name", device.dev_name);
                 zosStorage.sessionStorage.setItem("mac", device.mac);
                 zosStorage.sessionStorage.setItem("rssi", device.rssi);
@@ -210,5 +223,6 @@ Page({
   onDestroy() {
     logger.debug("page onDestroy invoked");
     zosInteraction.offGesture();
+    BLE.stopScan()
   },
 });

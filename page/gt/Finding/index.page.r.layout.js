@@ -26,7 +26,6 @@ export const DEVICE_NAME_STYLE = {
 	text_size: px(30),
 	align_h: hmUI.align.CENTER_H,
 	align_v: hmUI.align.CENTER_V,
-	text_style: hmUI.text_style.WRAP,
 	text: "Amazfit GTR 5",
 };
 export const MAC_TEXT_STYLE = {
@@ -38,7 +37,6 @@ export const MAC_TEXT_STYLE = {
 	text_size: px(20),
 	align_h: hmUI.align.CENTER_H,
 	align_v: hmUI.align.CENTER_V,
-	text_style: hmUI.text_style.WRAP,
 	text: "A1:B1:C1:D1:F1:G1",
 };
 export const DISTANCE_TEXT_STYLE = {
@@ -58,8 +56,9 @@ export const BUTTON_STYLE = {
 	x: px(120),
 	y: px(400),
 	w: px(240),
-	h: px(50),
+	h: px(60),
 	radius: px(25),
+	text_size:px(30),
 	normal_color: 0x1c1c1e,
 	press_color: 0x000000,
 	text: getText("page_Finding_Found"),
