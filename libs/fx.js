@@ -148,230 +148,11 @@ export class Fx {
 			this.end = end;
 			this.fps = fps;
 			this.time = time;
-			switch (style) {
-				case Fx.Styles.LINEAR:
-					this.fx = (x) =>
-						fx_inside.LINEAR(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_SINE:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_SINE(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_SINE:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_SINE(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_SINE:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_SINE(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_QUAD:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_QUAD(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_QUAD:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_QUAD(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_QUAD:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_QUAD(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_CUBIC:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_CUBIC(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_CUBIC:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_CUBIC(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_CUBIC:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_CUBIC(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_QUART:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_QUART(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_QUART:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_QUART(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_QUART:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_QUART(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_QUINT:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_QUINT(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_QUINT:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_QUINT(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_QUINT:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_QUINT(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_EXPO:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_EXPO(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_EXPO:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_EXPO(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_EXPO:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_EXPO(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_CIRC:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_CIRC(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_CIRC:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_CIRC(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_CIRC:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_CIRC(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_BACK:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_BACK(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_BACK:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_BACK(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_BACK:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_BACK(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_ELASTIC:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_ELASTIC(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_ELASTIC:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_ELASTIC(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_ELASTIC:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_ELASTIC(
-							x,
-							begin,
-							end,
-							fps * time
-						);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_BOUNCE:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_BOUNCE(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_OUT_BOUNCE:
-					this.fx = (x) =>
-						fx_inside.EASE_OUT_BOUNCE(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-				case Fx.Styles.EASE_IN_OUT_BOUNCE:
-					this.fx = (x) =>
-						fx_inside.EASE_IN_OUT_BOUNCE(x, begin, end, fps * time);
-					this.x_start = 0;
-					this.x_end = fps * time;
-					this.speed = 1;
-					break;
-			}
+
+			this.fx = (x) => style(x, begin, end, fps * time);
+			this.x_start = 0;
+			this.x_end = fps * time;
+			this.speed = 1;
 		}
 		this.per_clock = 1000 / fps;
 		this.delay = delay;
@@ -403,42 +184,32 @@ export class Fx {
 		}
 	}
 	registerTimer() {
-        /*
-		this.timer = new createSmoothTimer(
-			this.delay ? this.delay : 0,
-			this.per_clock,
-			(option) => {
-				this.func(this.fx((this.x_now += this.speed)));
-				if (this.x_now > this.x_end) {
-					//防止不到终点
+		this.timer = new ZeppTimer(() => {
+			if (this.timer) {
+				let nextX = this.x_now + this.speed;
+				let nextXValue = this.fx(nextX);
+
+				this.func(nextXValue);
+
+				if (nextX > this.x_end) {
+					// 防止不到终点
 					this.func(this.fx(this.x_end));
-					//执行onStop
-					if (this.onStop != undefined) {
+
+					// 执行onStop
+					if (typeof this.onStop === "function") {
 						this.onStop();
 					}
-					//停止timer
-					stopSmoothTimer(this.timer);
+
+					// 停止timer
+					this.timer.stop();
 					this.timer = null;
 					this.enable = false;
+				} else {
+					this.x_now = nextX;
 				}
-			},
-			{}
-		); //*/
-		this.timer = new ZeppTimer(() => {
-			this.func(this.fx((this.x_now += this.speed)));
-			if (this.x_now > this.x_end) {
-				//防止不到终点
-				this.func(this.fx(this.x_end));
-				//执行onStop
-				if (this.onStop != undefined) {
-					this.onStop();
-				}
-				//停止timer
-				this.timer.stop();
-				this.timer = null;
-				this.enable = false;
 			}
 		}, this.per_clock);
+
 		this.timer.start();
 	}
 	/**
@@ -482,46 +253,19 @@ export class Fx {
 Fx.Styles = {
 	/**
 	 * List of preset styles
-	 * @example EXAMPLE: indexNumber,
+	 * @example
+	 * 	EXAMPLE: function (now_x, begin, end, max_x) {
+	 * 	function math_func(x) {
+	 * 			return x;
+	 * 		}
+	 * 		return begin + (end - begin) * math_func(now_x / max_x);
+	 * 	},
+	 *
+	 * TODO Add more style
+	 *
+	 * The following presets are available for reference https://easings.net/
+	 * 以下预设可参考 https://easings.net/
 	 */
-	LINEAR: 0,
-	EASE_IN_SINE: 1,
-	EASE_OUT_SINE: 2,
-	EASE_IN_OUT_SINE: 3,
-	EASE_IN_QUAD: 4,
-	EASE_OUT_QUAD: 5,
-	EASE_IN_OUT_QUAD: 6,
-	EASE_IN_CUBIC: 7,
-	EASE_OUT_CUBIC: 8,
-	EASE_IN_OUT_CUBIC: 9,
-	EASE_IN_QUART: 10,
-	EASE_OUT_QUART: 11,
-	EASE_IN_OUT_QUART: 12,
-	EASE_IN_QUINT: 13,
-	EASE_OUT_QUINT: 14,
-	EASE_IN_OUT_QUINT: 15,
-	EASE_IN_EXPO: 16,
-	EASE_OUT_EXPO: 17,
-	EASE_IN_OUT_EXPO: 18,
-	EASE_IN_CIRC: 19,
-	EASE_OUT_CIRC: 20,
-	EASE_IN_OUT_CIRC: 21,
-	EASE_IN_BACK: 22,
-	EASE_OUT_BACK: 23,
-	EASE_IN_OUT_BACK: 24,
-	EASE_IN_ELASTIC: 25,
-	EASE_OUT_ELASTIC: 26,
-	EASE_IN_OUT_ELASTIC: 27,
-	EASE_IN_BOUNCE: 28,
-	EASE_OUT_BOUNCE: 29,
-	EASE_IN_OUT_BOUNCE: 31,
-};
-const fx_inside = {
-	// TODO Add more style
-
-	// The following presets are available for reference https://easings.net/
-	// 以下预设可参考 https://easings.net/
-
 	LINEAR: function (now_x, begin, end, max_x) {
 		function math_func(x) {
 			return x;
