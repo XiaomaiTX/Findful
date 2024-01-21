@@ -8,6 +8,8 @@ import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
 import { push } from "@zos/router";
 import { setScrollLock } from "@zos/page";
 import { getScrollTop } from "@zos/page";
+import { ZeppAnim } from "../../../libs/zeppos-animation-player";
+import * as ANIM_STYLE from "./animations";
 
 const logger = Logger.getLogger("index");
 const vis = new VisLog("index.js");
@@ -31,12 +33,14 @@ Page({
 					time: 1,
 					style: Fx.Styles.EASE_IN_OUT_QUAD,
 					onStop() {
+						new ZeppAnim({
+							tracks: [ANIM_STYLE.TRACK_1, ANIM_STYLE.TRACK_2],
+						});
 						//vis.log(getScrollTop())
-
-						fpush({
-							url: "page/gt/HomePage/index.page",
-							params: "",
-						}); //*/
+						// fpush({
+						// 	url: "page/gt/HomePage/index.page",
+						// 	params: "",
+						// }); //*/
 					},
 					func: (result) => {},
 				}); //*/
