@@ -13,3 +13,12 @@ export const LOGO_IMG_STYLE = {
 	auto_scale: true,
 	src: "icon.png",
 };
+export const CHECK_IMG_STYLE = {
+	x: (px(480) - px(158)) / 2,
+	y: (px(480) - px(158)) / 2,
+	w: px(100),
+	h: px(100),
+	alpha: 0,
+	auto_scale: true,
+	src: "check.png",
+};

@@ -37,7 +37,7 @@ import { Fx } from "./fx";
 
 import * as hmUI from "@zos/ui";
 import { getDeviceInfo } from "@zos/device";
-import { push } from "@zos/router";
+import { push, back } from "@zos/router";
 import { getScrollTop } from "@zos/page";
 
 const deviceInfo = getDeviceInfo();
@@ -75,6 +75,36 @@ export function fpush(param) {
 		style: Fx.Styles.EASE_OUT_EXPO, // Types of animation presets used, seeing @Fx.Style. 预设类型 见下面的Fx.Style
 		onStop() {
 			push({ url: param.url, param: param.param });
+		}, // Callback function at the end of the animation. 动画结束后的回调函数
+
+		// Callback function for each frame, the parameter is the current function value, the value range is [begin, end]
+		// 每一帧的回调函数，参数为当前函数值，取值范围为[begin, end]
+		func: (result) => {
+			page_mask.setProperty(hmUI.prop.MORE, {
+				center_x: PAGE_MASK.center_x,
+				center_y: PAGE_MASK.center_y - ScrollY,
+				radius: PAGE_MASK.radius,
+				color: PAGE_MASK.color,
+				alpha: result,
+			});
+		},
+	});
+}
+export function fback() {
+	hmUI.setStatusBarVisible(false);
+	const ScrollY = getScrollTop();
+	const page_mask = hmUI.createWidget(hmUI.widget.CIRCLE, {
+		...PAGE_MASK,
+		center_y: PAGE_MASK.center_y - ScrollY,
+	});
+	new Fx({
+		begin: 0, // Initial value of function. 初始函数值
+		end: 255, // Target value of function. 目标函数值
+		fps: 60, // FPS. 帧率
+		time: 0.1, // Total during time (s). 总时长(秒)
+		style: Fx.Styles.EASE_OUT_EXPO, // Types of animation presets used, seeing @Fx.Style. 预设类型 见下面的Fx.Style
+		onStop() {
+			back();
 		}, // Callback function at the end of the animation. 动画结束后的回调函数
 
 		// Callback function for each frame, the parameter is the current function value, the value range is [begin, end]

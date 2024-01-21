@@ -3,14 +3,14 @@ import { log as Logger } from "@zos/utils";
 import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
 import { Fx } from "../../../libs/fx";
 import VisLog from "@silver-zepp/vis-log";
-import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
+import { fpush, pageInit, fback } from "../../../libs/zeppos-fluent-push";
 import { setScrollLock } from "@zos/page";
 import { sessionStorage } from "@zos/storage";
 import BLEMaster from "../../../libs/ble-master";
 import { setPageBrightTime } from "@zos/display";
 import { getScrollTop } from "@zos/page";
 import { back } from "@zos/router";
-import * as ANIM_STYLE from "../../../libs/zeppos-animation-player";
+import * as ANIM_STYLE from "./animations";
 import { ZeppAnim } from "../../../libs/zeppos-animation-player";
 
 import {
@@ -58,7 +58,16 @@ Page({
 					...STYLE.BUTTON_STYLE,
 					click_func: (button_widget) => {
 						BLE.stopScan();
-						back();
+						new ZeppAnim({
+							tracks: [
+								ANIM_STYLE.TRACK_1,
+								ANIM_STYLE.TRACK_2,
+								ANIM_STYLE.TRACK_3,
+							],
+						});
+						setTimeout(() => {
+							fback();
+						}, 2000);
 					},
 				});
 				var color = 0xffffff;
