@@ -1,7 +1,7 @@
 /**
  * zeppos-fluent-push.js
  * @description A page switching library that provides fade-out effects in ZeppOS. 一个在ZeppOS中提供淡出效果的页面切换库
- * @version 1.0.0
+ * @version 1.0.1
  * @date 2023/03/12
  * @author XiaomaiTX
  * @license MIT

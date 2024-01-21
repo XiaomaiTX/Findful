@@ -1,4 +1,15 @@
-import VisLog from "@silver-zepp/vis-log";
+/**
+ * zeppos-animation-player.js
+ * @description An advanced animation library based on Zeppos-Fx. 一个基于zeppos-fx的进阶动画库
+ * @version 1.0.1
+ * @date 2024/01/19
+ * @author XiaomaiTX
+ * @license MIT
+ * https://github.com/XiaomaiTX/zeppos-animation-player
+ *
+ * @class ZeppAnim
+ *
+ */
 import { Fx } from "./fx";
 import * as hmUI from "@zos/ui";
 
