@@ -18,7 +18,7 @@ export const TRACK_1 = {
 				w: STYLE.PROGRESS_BAR_STYLE.w,
 			},
 			end: {
-				x: STYLE.PROGRESS_BAR_STYLE.x + px(400 - 20),
+				x: STYLE.PROGRESS_BAR_STYLE.x + px(400),
 				w: px(0),
 			},
 			init_func: (params) => {
@@ -38,6 +38,7 @@ export const TRACK_1 = {
 			},
 			end_func: (params) => {
 				hmUI.deleteWidget(params);
+				hmUI.redraw();
 				return;
 			},
 		},

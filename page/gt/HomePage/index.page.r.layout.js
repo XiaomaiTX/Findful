@@ -8,7 +8,7 @@ export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();
 
 export const BG_STYLE = {
 	x: px(0),
-	y: px(0),
+	y: px(-90),
 	src: "background.png",
 };
 

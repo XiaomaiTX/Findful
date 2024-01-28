@@ -11,7 +11,7 @@ export const TRACK_1 = {
 			delay: 0,
 			style: Fx.Styles.EASE_OUT_QUAD,
 			fps: 60,
-			time: 0.3,
+			time: 0.2,
 			begin: {
 				radius: px(0),
 			},
@@ -54,7 +54,7 @@ export const TRACK_1 = {
 			delay: 0,
 			style: Fx.Styles.EASE_OUT_QUAD,
 			fps: 60,
-			time: 0.3,
+			time: 0.2,
 			begin: {
 				radius: px(240),
 			},
@@ -85,7 +85,9 @@ export const TRACK_2 = {
 	frames: [
 		{
 			delay: 0,
-			time: 0.4,
+			time: 0.3,
+			style: Fx.Styles.EASE_OUT_QUAD,
+
 			begin: {
 				radius: px(0),
 			},
@@ -126,7 +128,7 @@ export const TRACK_3 = {
 	frames: [
 		{
 			delay: 0,
-			time: 0.4,
+			time: 0.2,
 			begin: {
 				alpha: 0,
 			},

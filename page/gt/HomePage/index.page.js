@@ -88,10 +88,11 @@ Page({
 				function bleScan() {
 					// Start scan | stop scan 4s later | return sortedDevices 5s later
 					const scanOptions = {
-						duration: 4000,
-						on_duration: () => {
-							logger.log("scan stop");
-						},
+						//duration: 4000,
+						throttle_interval: 200,
+						// on_duration: () => {
+						// 	logger.log("scan stop");
+						// },
 					};
 
 					BLE.startScan((scan_result) => {
@@ -241,10 +242,10 @@ Page({
 							.setEnable(false);
 					});
 					logger.log("recreate UI");
-					rawDevices.length = 0;
+					rawDevices.length = null;
 					logger.log("rawDevices.length " + rawDevices.length);
 
-					sortedDevices.length = 0;
+					sortedDevices.length = null;
 					logger.log("sortedDevices.length " + sortedDevices.length);
 
 					return devicesListUIGroup;
