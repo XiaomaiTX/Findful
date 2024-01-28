@@ -14,7 +14,7 @@ export const ICON_BG_STYLE = {
 export const ICON_STYLE = {
 	x: (px(480) - px(24)) / 2,
 	y: px(20),
-	src: "test_ble_icon.png",
+	src: "bluetooth.png",
 };
 
 export const DEVICE_NAME_STYLE = {
@@ -58,7 +58,7 @@ export const BUTTON_STYLE = {
 	w: px(240),
 	h: px(60),
 	radius: px(25),
-	text_size:px(30),
+	text_size: px(30),
 	normal_color: 0x1c1c1e,
 	press_color: 0x000000,
 	text: getText("page_Finding_Found"),

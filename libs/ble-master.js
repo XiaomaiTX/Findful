@@ -41,18 +41,26 @@ class BLEMaster {
 		return new Get(this.#getDevices);
 	}
 	/**
-	 * Starts scanning for devices.
-	 * @param {Function} response_callback - The callback function that will be called with the scan result for each device.
+	 * Starts scanning for BLE devices.
+	 * @param {Function} response_callback - Callback function called with each device's scan result.
 	 * @param {Object} [options={}] - Optional parameters for the scan.
-	 * @param {number} [options.duration] - The duration of the scan in milliseconds. If specified, the scan will automatically stop after this duration.
-	 * @param {Function} [options.on_duration] - A callback function that will be called when the scan stops due to reaching the specified duration.
-	 * @returns {boolean} Returns true if the call to start the scan succeeded, false if it failed.
+	 * @param {number} [options.duration] - Duration of the scan in milliseconds. Auto-stops after this duration.
+	 * @param {Function} [options.on_duration] - Callback function called when the scan stops after the specified duration.
+	 * @param {number} [options.throttle_interval=500] - Interval in milliseconds to throttle the processing of scan results.
+	 * @example
+	 * // example: start scanning for devices and log each found device
+	 * .startScan((device) => { console.log('Found device:', device); });
+	 *
+	 * // advanced example: start scanning for 10 seconds with a custom throttle interval, then stop and log
+	 * .startScan((device) =>  { console.log('Found device during scan:', device); },
+	 *                         { duration: 10000, throttle_interval: 1000, on_duration: () => console.log('Scan complete') });
+	 * @returns {boolean} true if the scan started successfully, false otherwise.
 	 */
 	startScan(response_callback, options = {}) {
 		// throttle settings
 		const scan_throttle_interval = options.throttle_interval || 500; // callbacks process interval
 		let device_batch = [];
-		let process_timeout;
+		let timer_started = false;
 
 		const modified_callback = (scan_result) => {
 			const mac_address = ab2mac(scan_result.dev_addr);
@@ -81,11 +89,14 @@ class BLEMaster {
 			device_batch.push(scan_result_mod);
 
 			// throttle processing
-			clearTimeout(process_timeout);
-			process_timeout = setTimeout(() => {
-				device_batch.forEach((device) => response_callback(device));
-				device_batch = []; // clear the batch
-			}, scan_throttle_interval);
+			if (!timer_started) {
+				timer_started = true;
+				setTimeout(() => {
+					device_batch.forEach((device) => response_callback(device));
+					device_batch = [];
+					timer_started = false;
+				}, scan_throttle_interval);
+			}
 		};
 
 		const success = hmBle.mstStartScan(modified_callback);

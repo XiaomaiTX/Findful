@@ -112,78 +112,43 @@ export class Fx {
 	 * @param {number} delay 延迟执行
 	 * @param {number} begin 初始函数值
 	 * @param {number} end 目标函数值
-	 * @param {number} (已弃用) x_start 函数开始的x坐标
-	 * @param {number} (已弃用) x_end 函数结束的x坐标
+	 * @param {number} x_start  函数开始的x坐标
+	 * @param {number} x_end  函数结束的x坐标
 	 * @param {number} time 执行总时间
-	 * @param {*} (已弃用) fx x => y 动画函数
+	 * @param {*} fx  x => y 动画函数
 	 * @param {*} func 执行的函数，每次的y值会作为第一个参数传给func
 	 * @param {number} fps 动画帧率
-	 * @param {*} enable
 	 * @param {string} style 内置预设类型
 	 * @param {*} onStop 结束后执行的函数
 	 */
-	constructor({
-		delay,
-		begin,
-		end,
-		x_start,
-		x_end,
-		time,
-		fx,
-		func,
-		fps,
-		enable,
-		style,
-		onStop,
-	}) {
-		if (fx) {
-			// 不使用预设
-			this.x_start = x_start * 1.0;
-			this.x_end = x_end * 1.0;
-			this.fx = fx;
-			this.speed = (x_end - x_start) / (time * fps);
-		} else {
-			// 使用预设
-			this.begin = begin;
-			this.end = end;
-			this.fps = fps;
-			this.time = time;
+	constructor({ delay, begin, end, time, func, fps, style, onStop }) {
+		this.begin = begin;
+		this.end = end;
+		this.fps = fps;
+		this.time = time;
 
-			this.fx = (x) => style(x, begin, end, fps * time);
-			this.x_start = 0;
-			this.x_end = fps * time;
-			this.speed = 1;
-		}
+		this.fx = (x) => style(x, begin, end, fps * time);
+		this.x_start = 0;
+		this.x_end = fps * time;
+		this.speed = 1;
+
 		this.per_clock = 1000 / fps;
 		this.delay = delay;
 		this.func = func;
 		this.x_now = this.x_start;
 		this.onStop = onStop;
-		if (enable == undefined) {
-			this.enable = true;
-		} else {
-			this.enable = enable;
-		}
 		this.timer = null;
+		this.stopTimer(); // 停止之前的定时器
 
-		this.setEnable(this.enable);
+		this.startTimer();
 	}
 	restart() {
 		this.x_now = this.x_start;
-		this.setEnable(false);
-		this.setEnable(true);
+		this.stopTimer();
+		this.startTimer();
 	}
-	setEnable(enable) {
-		if (enable) {
-			this.registerTimer();
-		} else {
-			if (this.timer) {
-				timer.stopTimer(this.timer);
-				this.timer = null;
-			}
-		}
-	}
-	registerTimer() {
+
+	startTimer() {
 		this.timer = new ZeppTimer(() => {
 			if (this.timer) {
 				let nextX = this.x_now + this.speed;
@@ -196,14 +161,10 @@ export class Fx {
 					this.func(this.fx(this.x_end));
 
 					// 执行onStop
-					if (typeof this.onStop === "function") {
-						this.onStop();
-					}
+					this.executeOnStop();
 
 					// 停止timer
-					this.timer.stop();
-					this.timer = null;
-					this.enable = false;
+					this.stopTimer();
 				} else {
 					this.x_now = nextX;
 				}
@@ -211,6 +172,23 @@ export class Fx {
 		}, this.per_clock);
 
 		this.timer.start();
+	}
+
+	stopTimer() {
+		if (this.timer) {
+			this.timer.stop();
+			this.timer = null;
+		}
+	}
+
+	executeOnStop() {
+		try {
+			if (typeof this.onStop === "function") {
+				this.onStop();
+			}
+		} catch (error) {
+			console.error("Error in onStop:", error);
+		}
 	}
 	/**
 	 * @function getMixColor()

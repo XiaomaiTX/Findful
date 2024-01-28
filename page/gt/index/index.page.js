@@ -8,6 +8,7 @@ import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
 import { push } from "@zos/router";
 import { setScrollLock } from "@zos/page";
 import { getScrollTop } from "@zos/page";
+import { openSync, O_RDONLY, O_CREAT, O_EXCL, statSync } from "@zos/fs";
 
 const logger = Logger.getLogger("index");
 const vis = new VisLog("index.js");
@@ -32,10 +33,23 @@ Page({
 					style: Fx.Styles.EASE_IN_OUT_QUAD,
 					onStop() {
 						//vis.log(getScrollTop());
-						fpush({
-							url: "page/gt/HomePage/index.page",
-							params: "",
-						}); //*/
+						const result = statSync({
+							path: "data.json",
+						});
+
+						if (result) {
+							console.log("exist");
+							fpush({
+								url: "page/gt/HomePage/index.page",
+								params: "",
+							});
+						} else {
+							console.log("not exist");
+							fpush({
+								url: "page/gt/QuickStart/index.page",
+								params: "",
+							}); //*/
+						}
 					},
 					func: (result) => {},
 				}); //*/

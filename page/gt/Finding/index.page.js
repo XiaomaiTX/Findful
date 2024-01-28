@@ -108,7 +108,7 @@ Page({
 							});
 						}
 					},
-					{ throttle_interval: 200 }
+					{ throttle_interval: 100 }
 				);
 			},
 		});

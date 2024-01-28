@@ -27,7 +27,7 @@ Page({
 				zosInteraction.onGesture({
 					callback: (event) => {
 						if (event === zosInteraction.GESTURE_RIGHT) {
-							zosRouter.home();
+							zosRouter.exit();
 						}
 						return true;
 					},
@@ -66,7 +66,7 @@ Page({
 					BLE.stopScan();
 					if (_devicesListUIGroup) {
 						hmUI.deleteWidget(_devicesListUIGroup);
-						logger.log("delete _devicesListUIGroup");
+						// logger.log("delete _devicesListUIGroup");
 						hmUI.redraw();
 					}
 
@@ -89,16 +89,17 @@ Page({
 					// Start scan | stop scan 4s later | return sortedDevices 5s later
 					const scanOptions = {
 						//duration: 4000,
-						throttle_interval: 200,
-						// on_duration: () => {
+						throttle_interval: 100,
+						//allow_duplicates: true,
+						//on_duration: () => {
 						// 	logger.log("scan stop");
-						// },
+						//},
 					};
 
 					BLE.startScan((scan_result) => {
 						if (scan_result) {
 							// Scan success
-							logger.log("Scan success");
+							// logger.log("Scan success");
 							Object.keys(BLE.get.devices()).forEach((mac) => {
 								const dev_name =
 									BLE.get.devices()[mac].dev_name;
@@ -114,7 +115,7 @@ Page({
 							logger.log("Scan failed");
 							BLE.stopScan();
 						}
-					});
+					}, scanOptions);
 
 					//BLE.stopScan();
 					return 0;
@@ -144,10 +145,10 @@ Page({
 
 					if (_devicesListUIGroup) {
 						hmUI.deleteWidget(_devicesListUIGroup);
-						logger.log("delete _devicesListUIGroup");
+						// logger.log("delete _devicesListUIGroup");
 						hmUI.redraw();
 					}
-					logger.log("Draw UI");
+					// logger.log("Draw UI");
 					const devicesListUIGroup = hmUI.createWidget(
 						hmUI.widget.GROUP,
 						{
@@ -175,9 +176,9 @@ Page({
 								function (info) {
 									if (_devicesListUIGroup) {
 										hmUI.deleteWidget(_devicesListUIGroup);
-										logger.log(
-											"delete _devicesListUIGroup"
-										);
+										// logger.log(
+										// 	"delete _devicesListUIGroup"
+										// );
 										hmUI.redraw();
 									}
 
@@ -241,12 +242,12 @@ Page({
 							})
 							.setEnable(false);
 					});
-					logger.log("recreate UI");
+					// logger.log("recreate UI");
 					rawDevices.length = null;
-					logger.log("rawDevices.length " + rawDevices.length);
+					// logger.log("rawDevices.length " + rawDevices.length);
 
 					sortedDevices.length = null;
-					logger.log("sortedDevices.length " + sortedDevices.length);
+					// logger.log("sortedDevices.length " + sortedDevices.length);
 
 					return devicesListUIGroup;
 				}
@@ -261,7 +262,7 @@ Page({
 						sortedDevices,
 						_devicesListUIGroup
 					);
-				}, 2000);
+				}, 3000);
 			},
 		});
 	},

@@ -106,7 +106,7 @@ export const ITEM_ICON_BG_STYLE = {
 export const ITEM_ICON_STYLE = {
 	x: px(0 + 16 + 6),
 	y: px(0 + 32 + 6),
-	src: "test_ble_icon.png",
+	src: "bluetooth.png",
 };
 export const ITEM_DESTANCE_CONTAINER_STYLE = {
 	x: px(0 + 68),
