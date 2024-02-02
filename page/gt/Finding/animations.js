@@ -1,5 +1,6 @@
 import { Fx, lerp } from "../../../libs/zeppos-animation-player";
 import * as hmUI from "@zos/ui";
+import { fpush, pageInit, fback } from "../../../libs/zeppos-fluent-push";
 
 export const TRACK_1 = {
 	config: {
@@ -74,7 +75,37 @@ export const TRACK_1 = {
 					alpha: 255 * 0.5,
 				});
 			},
-			end_func: (params) => {},
+			end_func: (params) => {
+				return params;
+			},
+		},
+		{
+			delay: 0.2,
+			style: Fx.Styles.EASE_OUT_QUAD,
+			fps: 60,
+			time: 0.2,
+			begin: {
+				radius: px(200),
+			},
+			end: {
+				radius: px(0),
+			},
+			init_func: (params) => {
+				console.log("t1 f2");
+				return params;
+			},
+			duration_func: (percent, begin, end, params) => {
+				params.setProperty(hmUI.prop.MORE, {
+					center_x: px(240),
+					center_y: px(240),
+					radius: lerp(begin.radius, end.radius, percent),
+					color: 0x69f0ae,
+					alpha: 255 * 0.5,
+				});
+			},
+			end_func: (params) => {
+				return params;
+			},
 		},
 	],
 };
@@ -104,6 +135,34 @@ export const TRACK_2 = {
 					alpha: 255 * 0.5,
 				});
 				return circle;
+			},
+			duration_func: (percent, begin, end, params) => {
+				params.setProperty(hmUI.prop.MORE, {
+					center_x: px(240),
+					center_y: px(240),
+					radius: lerp(begin.radius, end.radius, percent),
+					color: 0xb9f6ca,
+					alpha: 255 * 0.5,
+				});
+			},
+			end_func: (params) => {
+				return params;
+			},
+		},
+		{
+			delay: 0.2,
+			time: 0.3,
+			style: Fx.Styles.EASE_OUT_QUAD,
+
+			begin: {
+				radius: px(150),
+			},
+			end: {
+				radius: px(0),
+			},
+			init_func: (params) => {
+				console.log("t2 f1");
+				return params;
 			},
 			duration_func: (percent, begin, end, params) => {
 				params.setProperty(hmUI.prop.MORE, {
@@ -159,6 +218,34 @@ export const TRACK_3 = {
 				});
 			},
 			end_func: (params) => {
+				return params;
+			},
+		},
+		{
+			delay: 0.2,
+			time: 0.2,
+			begin: {
+				alpha: 255,
+			},
+			end: {
+				alpha: 0,
+			},
+			init_func: (params) => {
+				return params;
+			},
+			duration_func: (percent, begin, end, params) => {
+				params.setProperty(hmUI.prop.MORE, {
+					x: (px(480) - px(158)) / 2,
+					y: (px(480) - px(158)) / 2,
+					w: px(158),
+					h: px(158),
+					alpha: lerp(begin.alpha, end.alpha, percent),
+					auto_scale: true,
+					src: "check.png",
+				});
+			},
+			end_func: (params) => {
+				fback();
 				return params;
 			},
 		},

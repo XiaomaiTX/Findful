@@ -6,7 +6,8 @@ import VisLog from "@silver-zepp/vis-log";
 import { fpush, pageInit, fback } from "../../../libs/zeppos-fluent-push";
 import { setScrollLock } from "@zos/page";
 import { sessionStorage } from "@zos/storage";
-import BLEMaster from "../../../libs/ble-master";
+//import BLEMaster from "../../../libs/ble-master";
+import BLEMaster from "@silver-zepp/easy-ble";
 import { setPageBrightTime } from "@zos/display";
 import { getScrollTop } from "@zos/page";
 import { back } from "@zos/router";
@@ -65,9 +66,6 @@ Page({
 								ANIM_STYLE.TRACK_3,
 							],
 						});
-						setTimeout(() => {
-							fback();
-						}, 2000);
 					},
 				});
 				var color = 0xffffff;
@@ -77,39 +75,41 @@ Page({
 					return d;
 				}
 				// start scanning for nearby devices
-				const scan_success = BLE.startScan(
-					(scan_result) => {
-						// if THE device (mac) that we search for is found
+				const scanOptions = {
+					//duration: 4000,
+					throttle_interval: 100,
+					allow_duplicates: true,
+					//on_duration: () => {
+					// 	logger.log("scan stop");
+					//},
+				};
 
-						if (BLE.get.hasDevice(sessionStorage.getItem("mac"))) {
-							const rssi = parseInt(
-								BLE.get.devices()[sessionStorage.getItem("mac")]
-									.rssi
-							);
-							const distance = rssi2distance(
-								parseInt(rssi),
-								86,
-								6
-							);
-							// Todo | Check m and n
-							if (distance >= 0 && distance < 1) {
-								color = 0x00e676;
-							} else if (distance >= 1 && distance < 1.5) {
-								color = 0xffea00;
-							} else if (distance >= 1.5 && distance < 2) {
-								color = 0xff9100;
-							} else if (distance >= 2 && distance < 3.7) {
-								color = 0xff1744;
-							}
+				const scan_success = BLE.startScan((scan_result) => {
+					// if THE device (mac) that we search for is found
 
-							rssiText.setProperty(hmUI.prop.MORE, {
-								text: distance + " m",
-								color: color,
-							});
+					if (BLE.get.hasDevice(sessionStorage.getItem("mac"))) {
+						const rssi = parseInt(
+							BLE.get.devices()[sessionStorage.getItem("mac")]
+								.rssi
+						);
+						const distance = rssi2distance(parseInt(rssi), 86, 6);
+						// Todo | Check m and n
+						if (distance >= 0 && distance < 1) {
+							color = 0x00e676;
+						} else if (distance >= 1 && distance < 1.5) {
+							color = 0xffea00;
+						} else if (distance >= 1.5 && distance < 2) {
+							color = 0xff9100;
+						} else if (distance >= 2 && distance < 3.7) {
+							color = 0xff1744;
 						}
-					},
-					{ throttle_interval: 100 }
-				);
+
+						rssiText.setProperty(hmUI.prop.MORE, {
+							text: distance + " m",
+							color: color,
+						});
+					}
+				}, scanOptions);
 			},
 		});
 	},

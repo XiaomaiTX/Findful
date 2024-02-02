@@ -2,7 +2,8 @@ import * as hmUI from "@zos/ui";
 import { log as Logger } from "@zos/utils";
 import * as STYLE from "zosLoader:./index.page.[pf].layout.js";
 import VisLog from "@silver-zepp/vis-log";
-import BLEMaster from "../../../libs/ble-master";
+//import BLEMaster from "../../../libs/ble-master";
+import BLEMaster from "@silver-zepp/easy-ble";
 import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
 import { TEST_BUTTON_STYLE, TEST_CONTAINER_STYLE } from "./index.page.r.layout";
 import * as zosStorage from "@zos/storage";
@@ -90,7 +91,7 @@ Page({
 					const scanOptions = {
 						//duration: 4000,
 						throttle_interval: 100,
-						//allow_duplicates: true,
+						allow_duplicates: true,
 						//on_duration: () => {
 						// 	logger.log("scan stop");
 						//},

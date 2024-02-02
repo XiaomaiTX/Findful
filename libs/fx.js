@@ -1,7 +1,7 @@
 /**
  * fx.js
  * @description A library for providing simple animations in ZeppOS. 一个用于在ZeppOS中提供简单动画的库
- * @version 1.0.4
+ * @version 1.0.5
  * @date 2023/03/15
  * @author CuberQAQ XiaomaiTX
  * @license MIT
@@ -79,7 +79,7 @@
  * ```
  *  */
 //import { SmoothTimer, createSmoothTimer, stopSmoothTimer } from "./smoothTimer";
-import { ZeppTimer } from "./zeppos_timer";
+//import { ZeppTimer } from "./zeppos_timer";
 
 const bounceOut = function (x) {
 	/**
@@ -149,7 +149,7 @@ export class Fx {
 	}
 
 	startTimer() {
-		this.timer = new ZeppTimer(() => {
+		this.timer = setInterval(() => {
 			if (this.timer) {
 				let nextX = this.x_now + this.speed;
 				let nextXValue = this.fx(nextX);
@@ -170,13 +170,11 @@ export class Fx {
 				}
 			}
 		}, this.per_clock);
-
-		this.timer.start();
 	}
 
 	stopTimer() {
 		if (this.timer) {
-			this.timer.stop();
+			clearInterval(this.timer);
 			this.timer = null;
 		}
 	}

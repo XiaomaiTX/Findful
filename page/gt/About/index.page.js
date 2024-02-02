@@ -90,7 +90,7 @@ Page({
 		hmUI.createWidget(hmUI.widget.TEXT, {
 			...STYLE.ITEM_TITLE_STYLE,
 			y: px(579 + 21),
-			text: "zeppos-timer",
+			text: "zeppos-animation-player",
 		});
 		hmUI.createWidget(hmUI.widget.TEXT, {
 			...STYLE.ITEM_SUBTITLE_STYLE,
@@ -118,7 +118,7 @@ Page({
 			y: px(1026),
 			text: "@XiaomaiTX",
 		});
-},
+	},
 	onDestroy() {
 		logger.debug("page onDestroy invoked");
 	},

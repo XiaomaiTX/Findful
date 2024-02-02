@@ -1,58 +1,58 @@
 {
-  "configVersion": "v3",
-  "app": {
-    "appId": 1043721,
-    "appName": "Findful",
-    "appType": "app",
-    "version": {
-      "code": 1,
-      "name": "1.0.0"
-    },
-    "icon": "icon.png",
-    "vender": "XiaomaiTX",
-    "description": "Find your devices easily"
-  },
-  "permissions": ["data:os.device.info", "device:os.local_storage"],
-  "runtime": {
-    "apiVersion": {
-      "compatible": "3.0.0",
-      "target": "3.0.0",
-      "minVersion": "3.0"
-    }
-  },
-  "debug": false,
-  "targets": {
-    "gt": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/gt/index/index.page",
-            "page/gt/About/index.page",
-            "page/gt/UserAgreement/index.page",
-            "page/gt/QuickStart/index.page",
-            "page/gt/Finding/index.page",
-            "page/gt/HomePage/index.page"
-          ]
-        }
-      },
-      "platforms": [
-        {
-          "st": "r"
-        }
-      ],
-      "designWidth": 480
-    }
-  },
-  "i18n": {
-    "en-US": {
-      "appName": "Findful"
-    },
-    "zh-TW": {
-      "appName": "寻迹"
-    },
-    "zh-CN": {
-      "appName": "寻迹"
-    }
-  },
-  "defaultLanguage": "en-US"
+	"configVersion": "v3",
+	"app": {
+		"appId": 1043721,
+		"appName": "Findful",
+		"appType": "app",
+		"version": {
+			"code": 1,
+			"name": "1.0.0"
+		},
+		"icon": "icon.png",
+		"vender": "XiaomaiTX",
+		"description": "Find your devices easily"
+	},
+	"permissions": ["data:os.device.info", "device:os.local_storage"],
+	"runtime": {
+		"apiVersion": {
+			"compatible": "3.0.0",
+			"target": "3.0.0",
+			"minVersion": "3.0"
+		}
+	},
+	"debug": false,
+	"targets": {
+		"gt": {
+			"module": {
+				"page": {
+					"pages": [
+						"page/gt/index/index.page",
+						"page/gt/About/index.page",
+						"page/gt/UserAgreement/index.page",
+						"page/gt/QuickStart/index.page",
+						"page/gt/Finding/index.page",
+						"page/gt/HomePage/index.page"
+					]
+				}
+			},
+			"platforms": [
+				{
+					"st": "r"
+				}
+			],
+			"designWidth": 480
+		}
+	},
+	"i18n": {
+		"en-US": {
+			"appName": "Findful"
+		},
+		"zh-TW": {
+			"appName": "寻迹"
+		},
+		"zh-CN": {
+			"appName": "寻迹"
+		}
+	},
+	"defaultLanguage": "en-US"
 }

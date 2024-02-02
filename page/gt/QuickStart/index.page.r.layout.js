@@ -12,7 +12,7 @@ export const TITLE_STYLE = {
 	w: px(480),
 	h: px(84),
 	color: 0x000000,
-	text_size: px(68),
+	text_size: px(62),
 	align_h: hmUI.align.CENTER_H,
 	align_v: hmUI.align.CENTER_V,
 	text_style: hmUI.text_style.WRAP,
