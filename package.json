@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@silver-zepp/easy-ble": "^1.6.8",
+    "@silver-zepp/vis-log": "^1.0.8"
+  }
+}
