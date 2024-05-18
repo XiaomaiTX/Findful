@@ -6,7 +6,7 @@ import VisLog from "@silver-zepp/vis-log";
 import BLEMaster from "@silver-zepp/easy-ble";
 import { fpush, pageInit } from "../../../libs/zeppos-fluent-push";
 import { TEST_BUTTON_STYLE, TEST_CONTAINER_STYLE } from "./index.page.r.layout";
-import * as zosStorage from "@zos/storage";
+import { SessionStorage } from '@zos/storage'
 // import Fx and fxpush
 import * as zosInteraction from "@zos/interaction";
 import * as zosRouter from "@zos/router";
@@ -16,6 +16,7 @@ import * as ANIM_STYLE from "./animations";
 
 const logger = Logger.getLogger("homepage");
 const BLE = new BLEMaster();
+const zosStorage = new SessionStorage()
 
 Page({
 	onInit() {
